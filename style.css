@@ -14,9 +14,17 @@ body {
   display: block;
 }
 
-a, a:focus, a:active {
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
+/* Image container for main content */
+.image-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
   #countdown {
