@@ -286,21 +286,23 @@
         // Add fade-in effect
         document.body.classList.add('animate__animated', 'animate__fadeIn');
         document.body.style.opacity = 1; // Ensure visibility
-    
-        // Check if music should continue playing
-        if (sessionStorage.getItem("music-playing") === "true") {
-          let music = document.getElementById("weddingMusic");
-          if (music) {
-            music.play().catch(error => {
-              console.log("Autoplay blocked: " + error);
-            });
-          }
-        }
-      };
+      }
     </script>
     
     <audio id="weddingMusic" src="music/Zui Mei Qing Lu.mp3" loop></audio>
-      
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let music = document.getElementById("weddingMusic");
+    
+        // Check if music was playing before redirect
+        if (sessionStorage.getItem("music-playing") === "true") {
+          music.play().catch(error => {
+            console.log("Autoplay blocked on new page: " + error);
+          });
+        }
+      });
+    </script>
+
   <script>
     let zoomLevel = 1; // Default zoom level
 
