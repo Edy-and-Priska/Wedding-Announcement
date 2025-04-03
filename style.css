@@ -14,67 +14,10 @@ body {
   display: block;
 }
 
-/* Button container centers the button properly */
-.button-container {
-  position: absolute;
-  top: 20%; /* Adjust this to move up/down */
-  left: 50%; /* Start at 50% of parent */
-  transform: translateX(-50%); /* Pull back by 50% of button width */
-  width: 100%; /* Ensures button stays centered */
-  text-align: center; /* Extra safety for centering */
-}
-
-/* Button scales responsively but stays centered */
-.invitation-button {
-  max-width: 80%; /* Adjust freely without breaking position */
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.invitation-button:hover {
-  transform: scale(1.05);
-}
-
 a, a:focus, a:active {
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
-
-/* Optional: Adjust button size at different screen widths */
-@media (min-width: 768px) {
-  .invitation-button {
-      max-width: 90%; /* Bigger on small screens */
-  }
-  .button-container {
-      top: 15%; /* Adjust vertical position on mobile if needed */
-  }
-}
-@media (min-width: 400px) {
-  .invitation-button {
-      max-width: 45%; /* Bigger on small screens */
-  }
-  .button-container {
-      top: 28%; /* Adjust vertical position on mobile if needed */
-  }
-}
-@media (min-width: 300px) {
-  .invitation-button {
-      max-width: 45%; /* Bigger on small screens */
-  }
-  .button-container {
-      top: 28%; /* Adjust vertical position on mobile if needed */
-  }
-}  
-@media (min-width: 1280px) {
-  .invitation-button {
-      max-width: 46%; /* Bigger on small screens */
-  }
-  .button-container {
-      top: 29.7%; /* Adjust vertical position on mobile if needed */
-  }
-}  
 
   #countdown {
     font-size: 24px;
