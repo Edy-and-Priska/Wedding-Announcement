@@ -184,6 +184,60 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    #countdown {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #countdown span {
+    padding: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    margin: 0 5px;
+  }
+
+/* Fade-out effect */
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
+
+  
+  #countdown {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 1px;
+  }
+  
+  #countdown span {
+    padding: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    margin: 0 5px;
+  }
+  .image-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;  
+    }
   </style>
 </head>
 
@@ -202,7 +256,6 @@
 
   <!-- ===== MAIN CONTENT (HIDDEN UNTIL BUTTON CLICK) ===== -->
   <div class="main-content" id="mainContent">
-    <link rel="stylesheet" href="Wedding Gallery.css">
     <div class="image-container"></div>
     <img src="images/1.jpg" class="image">
     <div id="countdown">
