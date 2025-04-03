@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Invitation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #faf3f0;
+            text-align: center;
+        }
+        .btn {
+            padding: 16px 32px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #e8a87c, #d35d6e);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(211, 93, 110, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" id="enterBtn">Enter Our Wedding</button>
+
+    <audio id="weddingMusic"></audio>
+
+    <script>
+        const music = document.getElementById('weddingMusic');
+        music.src = 'music/Zui Mei Qing Lu.mp3';
+        music.loop = true;
+        
+        document.getElementById('enterBtn').addEventListener('click', function() {
+            // iOS requires this to be triggered by user gesture
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Store playback time in localStorage
+                    localStorage.setItem('weddingMusicTime', music.currentTime);
+                    // Redirect after audio starts
+                    setTimeout(() => {
+                        window.location.href = 'wedding.html';
+                    }, 300);
+                }).catch(error => {
+                    console.log('Playback prevented:', error);
+                    // Fallback: redirect anyway
+                    window.location.href = 'wedding.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
