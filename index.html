@@ -25,37 +25,31 @@
       </a>
     </div>
   </div>
+  <button id="unmuteButton" style="display: none;">🔇 Enable Sound</button>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Howler sound
-      const sound = new Howl({
-        src: ['music/Zui Mei Qing Lu.mp3'],
-        html5: true, // Force HTML5 Audio (better for iOS)
-        preload: true, // Preload the audio
-        volume: 1.0 // Set full volume
-      });
-      
-      const button = document.getElementById('invitationButton');
-      
-      button.addEventListener('click', function() {
-        // Play the sound
-        sound.play();
-        
-        // Set flag for next page
+    document.getElementById('invitationButton').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  // Create audio on first click
+  const music = new Audio('music/Zui Mei Qing Lu.mp3');
+  music.volume = 1.0;
+  
+  // iOS workaround - must be called from a touch event
+  music.play().then(() => {
+    sessionStorage.setItem("music-playing", "true");
+    window.location.href = "Wedding Gallery.html";
+  }).catch(error => {
+    console.error("Playback failed:", error);
+    // Try again after a small delay
+    setTimeout(() => {
+      music.play().finally(() => {
         sessionStorage.setItem("music-playing", "true");
-        
-        // Redirect after short delay to ensure playback starts
-        setTimeout(function() {
-          window.location.href = "Wedding Gallery.html";
-        }, 300);
+        window.location.href = "Wedding Gallery.html";
       });
-      
-      // iOS-specific: touchstart handler to establish user gesture
-      button.addEventListener('touchstart', function() {
-        // This empty handler helps establish the user gesture context
-      }, { passive: true });
-    });
+    }, 300);
+  });
+});
   </script>
 
   <script src="script.js"></script>
