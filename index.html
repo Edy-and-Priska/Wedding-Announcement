@@ -151,17 +151,30 @@
       left: 53%;
       width: 77%;
     }}
+
+    a, a:focus, a:active {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
     /* Main Content (Hidden initially) */
     .main-content {
       display: none; /* Hidden until button click */
       padding: 0px;
-      width: 100%
+      width: 100vw; /* Use viewport width */
+      max-width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      overflow-x: hidden; /* Prevent horizontal overflow */
     }
+    /* When visible */
+    .main-content.visible {
+    display: block;}
 
     .landing-container.fade-out {
       opacity: 0; /* Fade to transparent */
       animation: fadeout 4s ease-out;
     }
+
     /* Optional: Fade-in effect */
     .fade-in {
       animation: fadeIn 4s ease-in;
@@ -219,6 +232,7 @@
       top: 10%;    
     }
    </style>
+   
    <img src="images/3.jpg" class="image">
   </div>
     
