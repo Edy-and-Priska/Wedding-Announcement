@@ -24,36 +24,36 @@
     </div>
   </div>
 
-<audio id="weddingMusic" src="music/Zui Mei Qing Lu.mp3" preload="auto"></audio>
+  <audio id="weddingMusic" preload="auto"></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const music = document.getElementById('weddingMusic');
       const button = document.getElementById('invitationButton');
       
-      // iOS requires we load the audio first
-      music.load();
+      // Set audio source
+      music.src = "music/Zui Mei Qing Lu.mp3";
+      music.volume = 1.0;
+      
+      // iOS requires this to be called from a user gesture
+      button.addEventListener('touchstart', function() {
+        // Empty function - just establishes the gesture context
+      }, { passive: true });
       
       button.addEventListener('click', function(e) {
         e.preventDefault();
         
         // First play the music
-        const playPromise = music.play();
-        
-        if (playPromise !== undefined) {
-          playPromise
-            .then(_ => {
-              // Music started successfully, now redirect
-              sessionStorage.setItem("music-playing", "true");
-              window.location.href = "Wedding Gallery.html";
-            })
-            .catch(error => {
-              // If play fails, still redirect but show error
-              console.log("Autoplay blocked: " + error);
-              sessionStorage.setItem("music-playing", "true");
-              window.location.href = "Wedding Gallery.html";
-            });
-        }
+        music.play().then(() => {
+          // Only redirect after playback starts
+          sessionStorage.setItem("music-playing", "true");
+          window.location.href = "Wedding Gallery.html";
+        }).catch(error => {
+          console.error("Playback failed:", error);
+          // Fallback: redirect anyway
+          sessionStorage.setItem("music-playing", "true");
+          window.location.href = "Wedding Gallery.html";
+        });
       });
     });
   </script>
