@@ -8,37 +8,6 @@
   <link rel="Website icon" type="png" href="images/married-icon.png">
   <link rel="stylesheet" href="style.css">
   <link rel="preload" href="audio/wedding-song.mp3" as="audio">
-  <style>
-    /* Additional styles for music interaction */
-    .music-loading {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      color: white;
-      font-size: 1.2rem;
-      display: none;
-    }
-    .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-      margin-bottom: 15px;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
 </head>
 
 <body>
@@ -56,21 +25,12 @@
     </div>
   </div>
 
-  <div class="music-loading" id="musicLoading">
-    <div class="loading-spinner"></div>
-    <p>Preparing your wedding experience...</p>
-  </div>
-
   <audio id="weddingMusic" src="music/Zui Mei Qing Lu.mp3" preload="auto"></audio>
 
   <script>
     document.getElementById('invitationLink').addEventListener('click', function(e) {
       e.preventDefault(); // Prevent immediate redirect
       const music = document.getElementById('weddingMusic');
-      const loadingScreen = document.getElementById('musicLoading');
-      
-      // Show loading state
-      loadingScreen.style.display = 'flex';
       
       // 1. First try to play music
       const playPromise = music.play();
@@ -79,14 +39,10 @@
         playPromise.then(() => {
           // Music started successfully
           sessionStorage.setItem("music-playing", "true");
-          
-          // Brief delay to ensure audio continues during redirect
-          setTimeout(() => {
-            window.location.href = "Wedding Gallery.html";
-          }, 300);
+          window.location.href = "Wedding Gallery.html";
         }).catch(error => {
           console.log("Autoplay blocked:", error);
-          // Fallback: Redirect with visual indicator that music is available
+          // Fallback: Redirect without music
           sessionStorage.setItem("music-playing", "ready");
           window.location.href = "Wedding Gallery.html";
         });
