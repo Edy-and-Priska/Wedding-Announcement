@@ -1,65 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wedding Invitation</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #faf3f0;
-            text-align: center;
-        }
-        .btn {
-            padding: 16px 32px;
-            font-size: 18px;
-            background: linear-gradient(135deg, #e8a87c, #d35d6e);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(211, 93, 110, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .btn:active {
-            transform: scale(0.95);
-        }
-    </style>
-</head>
-<body>
-    <button class="btn" id="enterBtn">Enter Our Wedding</button>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Edy & Priska Wedding</title>
+  <link rel="icon" href="images/married-icon.png">
+  <script src="script.js"></script>
+  
+  <style>
+    /* Reset default margins & padding */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
 
-    <audio id="weddingMusic"></audio>
+    /* Landing Page (Full-screen cover) */
+    .landing-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/landing-page.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: 1000; /* Ensures it stays on top */
+      transition: opacity 0.5s ease;
+    }
+
+    /* Button styling */
+    .button-container {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .invitation-button {
+      cursor: pointer;
+      max-width: 200px;
+    }
+
+    /* Main Content (Hidden initially) */
+    .main-content {
+      display: none; /* Hidden until button click */
+      padding: 20px;
+    }
+
+    /* Optional: Fade-in effect */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== LANDING PAGE (VISIBLE FIRST) ===== -->
+  <div class="landing-container" id="landingPage">
+    <div class="button-container">
+      <img 
+        src="images/Buka Undangan2.png" 
+        alt="Open Invitation" 
+        class="invitation-button" 
+        id="openInvitationBtn"
+      >
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT (HIDDEN UNTIL BUTTON CLICK) ===== -->
+  <div class="main-content" id="mainContent">
+    <link rel="stylesheet" href="Wedding Gallery.css">
+    <img src="images/1.jpg" class="image">
+   <div id="countdown">
+    <div class="timer-unit">
+      <span id="days">0</span>
+      <span class="label">Days</span>
+    </div>
+    <div class="timer-unit">
+      <span id="hours">00</span>
+      <span class="label">Hours</span>
+    </div>
+    <div class="timer-unit">
+      <span id="minutes">00</span>
+      <span class="label">Minutes</span>
+    </div>
+    <div class="timer-unit">
+      <span id="seconds">00</span>
+      <span class="label">Seconds</span>
+    </div>
+  </div>
+  <script src="script.js"></script>
+   <img src="images/2.jpg" class="image2">
+  </div>
+
+  <body class="bg-white min-h-screen py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+        
+        <div class="album-container">
+            <div class="album">
+                <!-- Cover Page with Image -->
+                <div class="album-page album-cover" id="cover">
+                    <!-- Replace with your cover image -->
+                    <img src="cover.jpg" alt="Wedding Album Cover" class="album-cover-image">
+                    <div class="album-cover-content">
+                        <h2 class="text-2xl font-serif mb-2 text-rose-800">Our Wedding Album</h2>
+                        <button onclick="startAlbum()" class="px-6 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-full transition-all">
+                            Open Album
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Album Pages -->
+                <!-- Replace the src attributes with your actual image paths -->
+                <div class="album-page hidden" id="page1">
+                    <img src="photo1.jpg" alt="Wedding Photo 1" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page2">
+                    <img src="photo2.jpg" alt="Wedding Photo 2" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page3">
+                    <img src="photo3.jpg" alt="Wedding Photo 3" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page4">
+                    <img src="photo4.jpg" alt="Wedding Photo 4" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page5">
+                    <img src="photo5.jpg" alt="Wedding Photo 5" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page6">
+                    <img src="photo6.jpg" alt="Wedding Photo 6" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page7">
+                    <img src="photo7.jpg" alt="Wedding Photo 7" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page8">
+                    <img src="photo8.jpg" alt="Wedding Photo 8" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page9">
+                    <img src="photo9.jpg" alt="Wedding Photo 9" class="album-image">
+                </div>
+                <div class="album-page hidden" id="page10">
+                    <img src="photo10.jpg" alt="Wedding Photo 10" class="album-image">
+                </div>
+            </div>
+            
+            <div class="navigation-buttons hidden" id="navButtons">
+                <button onclick="prevPage()" class="px-6 py-2 bg-rose-600 text-white rounded-full hover:bg-rose-700 transition-all">
+                    Previous
+                </button>
+                <button onclick="nextPage()" class="px-6 py-2 bg-rose-600 text-white rounded-full hover:bg-rose-700 transition-all">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+    <img src="images/3.jpg" class="image">
 
     <script>
-        const music = document.getElementById('weddingMusic');
-        music.src = 'music/Zui Mei Qing Lu.mp3';
-        music.loop = true;
-        
-        document.getElementById('enterBtn').addEventListener('click', function() {
-            // iOS requires this to be triggered by user gesture
-            const playPromise = music.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    // Store playback time in localStorage
-                    localStorage.setItem('weddingMusicTime', music.currentTime);
-                    // Redirect after audio starts
-                    setTimeout(() => {
-                        window.location.href = 'wedding.html';
-                    }, 300);
-                }).catch(error => {
-                    console.log('Playback prevented:', error);
-                    // Fallback: redirect anyway
-                    window.location.href = 'wedding.html';
-                });
-            }
-        });
+      window.onload = function() {
+        // Add fade-in effect
+        document.body.classList.add('animate__animated', 'animate__fadeIn');
+        document.body.style.opacity = 1; // Ensure visibility
+    
+        // Check if music should continue playing
+        if (sessionStorage.getItem("music-playing") === "true") {
+          let music = document.getElementById("weddingMusic");
+          if (music) {
+            music.play().catch(error => {
+              console.log("Autoplay blocked: " + error);
+            });
+          }
+        }
+      };
     </script>
+    
+    <audio id="weddingMusic" src="music/Zui Mei Qing Lu.mp3" loop></audio>
+      
+  <script>
+    let zoomLevel = 1; // Default zoom level
+
+    // Listen for CTRL + Mouse Scroll
+    window.addEventListener("wheel", function(event) {
+      if (event.ctrlKey) { // Check if CTRL is pressed
+        event.preventDefault(); // Prevent default browser zoom
+
+        if (event.deltaY < 0) {
+          zoomLevel += 0.1; // Zoom in
+        } else {
+          zoomLevel -= 0.1; // Zoom out
+        }
+
+        if (zoomLevel < 0.5) zoomLevel = 0.5; // Minimum zoom limit
+        if (zoomLevel > 2) zoomLevel = 2; // Maximum zoom limit
+
+        document.body.style.transform = `scale(${zoomLevel})`; // Apply zoom effect
+        document.body.style.transformOrigin = "center top"; // Keep scaling from the center
+      }
+    });
+  </script>
+    <!-- PASTE YOUR ENTIRE WEDDING GALLERY CONTENT HERE -->
+  </div>
+
+  <!-- ===== BACKGROUND MUSIC ===== -->
+  <audio id="weddingMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    document.getElementById('openInvitationBtn').addEventListener('click', function() {
+      const landingPage = document.getElementById('landingPage');
+      const mainContent = document.getElementById('mainContent');
+      const music = document.getElementById('weddingMusic');
+
+      // 1. Play music (autoplay may require user interaction)
+      music.play().catch(e => console.log("Music play failed. User may need to interact first."));
+
+      // 2. Fade out landing page
+      landingPage.style.opacity = '0';
+      setTimeout(() => {
+        landingPage.style.display = 'none'; // Hide completely after fade
+      }, 500); // Matches CSS transition time
+
+      // 3. Show main content with fade-in effect
+      mainContent.style.display = 'block';
+      mainContent.classList.add('fade-in');
+    });
+  </script>
+
 </body>
 </html>
