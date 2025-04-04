@@ -558,6 +558,13 @@
     }
     </style>
     <script>
+      // Add this at the beginning of your script
+    window.addEventListener('load', function() {
+    const images = document.querySelectorAll('.wa-album-image');
+    images.forEach(img => {
+        new Image().src = img.src;
+    });
+});
     (function() {
     // Scoped variables
     let currentPageIndex = -1; // -1 = cover, 0-9 = pages
@@ -584,13 +591,6 @@
     prevBtn.addEventListener('click', goToPreviousPage);
     nextBtn.addEventListener('click', goToNextPage);
 
-    // Add this to prevent default touch behaviors that might cause flickering
-    document.querySelectorAll('.wa-nav-btn').forEach(btn => {
-        btn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-        }, { passive: false });
-    });
-    
     function startAlbum() {
         if (isAnimating) return;
         clearTimeout(returnTimeout);
