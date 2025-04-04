@@ -584,6 +584,13 @@
     prevBtn.addEventListener('click', goToPreviousPage);
     nextBtn.addEventListener('click', goToNextPage);
 
+    // Add this to prevent default touch behaviors that might cause flickering
+    document.querySelectorAll('.wa-nav-btn').forEach(btn => {
+        btn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    });
+    
     function startAlbum() {
         if (isAnimating) return;
         clearTimeout(returnTimeout);
