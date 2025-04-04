@@ -46,6 +46,9 @@
       height: auto;
       cursor: pointer;
       transition: transform 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none; /* Optional: Prevents text selection */
+      -webkit-user-select: none; /* For older browsers */
     }
 
     .invitation-button:hover {
@@ -316,7 +319,397 @@
     }
    </style>
    
+   <div id="wedding-album-container">
+    <div class="wa-container">
+        <div class="wa-album">
+            <!-- Cover -->
+            <div class="wa-page wa-cover" id="wa-cover">
+                <div class="wa-image-container">
+                    <img src="cover.jpg" alt="Wedding Album Cover" class="wa-album-image">
+                </div>
+                <div class="wa-open-prompt">Our Wedding Album</div>
+            </div>
+            
+            <!-- Pages 1-10 -->
+            <div class="wa-page" id="wa-page1">
+                <div class="wa-image-container">
+                    <img src="photo1.jpg" alt="Wedding Photo 1" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page2">
+                <div class="wa-image-container">
+                    <img src="photo2.jpg" alt="Wedding Photo 2" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page3">
+                <div class="wa-image-container">
+                    <img src="photo3.jpg" alt="Wedding Photo 3" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page4">
+                <div class="wa-image-container">
+                    <img src="photo4.jpg" alt="Wedding Photo 4" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page5">
+                <div class="wa-image-container">
+                    <img src="photo5.jpg" alt="Wedding Photo 5" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page6">
+                <div class="wa-image-container">
+                    <img src="photo6.jpg" alt="Wedding Photo 6" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page7">
+                <div class="wa-image-container">
+                    <img src="photo7.jpg" alt="Wedding Photo 7" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page8">
+                <div class="wa-image-container">
+                    <img src="photo8.jpg" alt="Wedding Photo 8" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page9">
+                <div class="wa-image-container">
+                    <img src="photo9.jpg" alt="Wedding Photo 9" class="wa-album-image">
+                </div>
+            </div>
+            <div class="wa-page" id="wa-page10">
+                <div class="wa-image-container">
+                    <img src="photo10.jpg" alt="Wedding Photo 10" class="wa-album-image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="wa-navigation" id="wa-navButtons" style="display: none;">
+            <button class="wa-nav-btn" id="wa-prevBtn" disabled>‹ Previous</button>
+            <span class="wa-page-indicator" id="wa-pageIndicator">Cover</span>
+            <button class="wa-nav-btn" id="wa-nextBtn">Next ›</button>
+        </div>
+    </div>
+</div>
+<style>
+    /* Reset for just the album container */
+    #wedding-album-container * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 30px; /* Adjust this value as needed */
+    }
+    
+    /* Main container */
+    #wedding-album-container .wa-container {
+        position: relative;
+        width: min(95vw, 800px);
+        height: min(95vh, 600px);
+        perspective: 2000px;
+        margin: 2rem auto;
+    }
+    
+    /* Album styles */
+    #wedding-album-container .wa-album {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+    }
+    
+    /* Page styles */
+    #wedding-album-container .wa-page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform-origin: left center;
+        background: white;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        overflow: hidden;
+        transition: transform 2.2s ease;
+        backface-visibility: hidden;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Image container */
+    #wedding-album-container .wa-image-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    /* Image styles */
+    #wedding-album-container .wa-album-image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Cover styles */
+    #wedding-album-container .wa-cover {
+        z-index: 11;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    #wedding-album-container .wa-cover .wa-album-image {
+        object-fit: cover;
+        box-shadow: none;
+    }
+    
+    /* Open prompt */
+    #wedding-album-container .wa-open-prompt {
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 1rem;
+        animation: wa-gentlePulse 2s infinite;
+    }
+    
+    @keyframes wa-gentlePulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
+    
+    /* Navigation */
+    #wedding-album-container .wa-navigation {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+    }
+    
+    #wedding-album-container .wa-nav-btn {
+        padding: 8px 16px;
+        background: #d4af37;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    #wedding-album-container .wa-nav-btn:hover:not(:disabled) {
+        background: #c19b3c;
+        transform: translateY(-2px);
+    }
+    
+    #wedding-album-container .wa-nav-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    #wedding-album-container .wa-page-indicator {
+        font-size: 1.1rem;
+        color: #555;
+        text-align: center;
+        min-width: 120px;
+    }
+    
+    /* Initial state */
+    #wedding-album-container .wa-page:not(.wa-cover) {
+        transform: rotateY(-180deg);
+        display: none;
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+        #wedding-album-container .wa-container {
+            height: min(90vh, 500px);
+        }
+        
+        #wedding-album-container .wa-nav-btn {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+        }
+        
+        #wedding-album-container .wa-page-indicator {
+            font-size: 0.9rem;
+            min-width: 100px;
+        }
+        
+        #wedding-album-container .wa-image-container {
+            padding: 10px;
+        }
+    }
+    </style>
+    <script>
+    (function() {
+    // Scoped variables
+    let currentPageIndex = -1; // -1 = cover, 0-9 = pages
+    const totalPages = 10;
+    let isAnimating = false;
+    let returnTimeout = null;
+
+    // Scoped DOM elements with wa- prefix
+    const cover = document.getElementById('wa-cover');
+    const pages = Array.from(document.querySelectorAll('#wedding-album-container .wa-page:not(.wa-cover)'));
+    const prevBtn = document.getElementById('wa-prevBtn');
+    const nextBtn = document.getElementById('wa-nextBtn');
+    const pageIndicator = document.getElementById('wa-pageIndicator');
+    const navButtons = document.getElementById('wa-navButtons');
+
+    // Initialize - scoped to our container
+    pages.forEach(page => {
+        page.style.transform = 'rotateY(-180deg)';
+        page.style.display = 'none';
+    });
+
+    // Scoped event listeners
+    cover.addEventListener('click', startAlbum);
+    prevBtn.addEventListener('click', goToPreviousPage);
+    nextBtn.addEventListener('click', goToNextPage);
+
+    function startAlbum() {
+        if (isAnimating) return;
+        clearTimeout(returnTimeout);
+        
+        isAnimating = true;
+        cover.style.transform = 'rotateY(-180deg)';
+        navButtons.style.display = 'flex';
+        
+        setTimeout(() => {
+            cover.style.display = 'none';
+            showPage(0);
+            currentPageIndex = 0;
+            isAnimating = false;
+            updateNavigation();
+        }, 800);
+    }
+
+    function goToNextPage() {
+        if (isAnimating || currentPageIndex >= totalPages - 1) return;
+        clearTimeout(returnTimeout);
+        
+        isAnimating = true;
+        const currentPage = pages[currentPageIndex];
+        flipPageOut(currentPage);
+        
+        currentPageIndex++;
+        const nextPage = pages[currentPageIndex];
+        showPage(currentPageIndex);
+        
+        setTimeout(() => {
+            isAnimating = false;
+            updateNavigation();
+            
+            // Auto-return if on last page
+            if (currentPageIndex === totalPages - 1) {
+                returnTimeout = setTimeout(() => {
+                    returnToCover();
+                }, 4000);
+            }
+        }, 800);
+    }
+
+    function goToPreviousPage() {
+        if (isAnimating || currentPageIndex < 0) return;
+        clearTimeout(returnTimeout);
+        
+        isAnimating = true;
+        const currentPage = pages[currentPageIndex];
+        flipPageOut(currentPage);
+        
+        currentPageIndex--;
+        
+        if (currentPageIndex === -1) {
+            setTimeout(() => {
+                currentPage.style.display = 'none';
+                cover.style.display = 'flex';
+                cover.style.transform = 'rotateY(0deg)';
+                isAnimating = false;
+                navButtons.style.display = 'none';
+            }, 800);
+            return;
+        }
+        
+        showPage(currentPageIndex);
+        
+        setTimeout(() => {
+            isAnimating = false;
+            updateNavigation();
+        }, 800);
+    }
+
+    function returnToCover() {
+        if (currentPageIndex !== totalPages - 1) return;
+        
+        isAnimating = true;
+        const currentPage = pages[currentPageIndex];
+        flipPageOut(currentPage);
+        
+        setTimeout(() => {
+            currentPage.style.display = 'none';
+            cover.style.display = 'flex';
+            cover.style.transform = 'rotateY(0deg)';
+            currentPageIndex = -1;
+            isAnimating = false;
+            navButtons.style.display = 'none';
+            updateNavigation();
+        }, 800);
+    }
+
+    // Helper functions with scoped operations
+    function flipPageOut(page) {
+        page.style.transform = 'rotateY(-180deg)';
+        setTimeout(() => {
+            page.style.display = 'none';
+        }, 800);
+    }
+
+    function showPage(index) {
+        const page = pages[index];
+        page.style.display = 'flex';
+        page.style.transform = 'rotateY(0deg)';
+    }
+
+    function updateNavigation() {
+        prevBtn.disabled = currentPageIndex <= 0;
+        nextBtn.disabled = currentPageIndex >= totalPages - 1;
+        
+        if (currentPageIndex === -1) {
+            pageIndicator.textContent = 'Cover';
+        } else {
+            pageIndicator.textContent = `Page ${currentPageIndex + 1} of ${totalPages}`;
+        }
+    }
+
+    // Optional: Make available globally if needed
+    window.waAlbum = {
+        next: goToNextPage,
+        prev: goToPreviousPage,
+        open: startAlbum
+    };
+})();
+</script>
+
    <img src="images/3.jpg" class="image">
+  
+</style>
   </div>
     
     <script>
