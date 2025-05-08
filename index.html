@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:image" content="https://edy-and-priska.github.io/WeddingDay/images/married-icon.png">
+  <link rel="Website icon" type="png" href="images/married-icon.png">
   <title>Edy & Priska Wedding</title>
-  <link rel="icon" href="images/married-icon.png">
   <link rel="preload" href="images/landing-page.jpg" as="image">
 
   <style>
@@ -17,127 +18,31 @@
     }
 
     .landing-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('images/landing-page.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; /* Change this to 'contain' if you don't want any cropping */
-  z-index: 1000;
-  transition: opacity 6s ease;
-  
-  /* Optional: Add a fallback background color */
-  background-color: #f0f0f0;
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/landing-page.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      z-index: 1000;
+      transition: opacity 6s ease;
+      background-color: #f0f0f0;
+    }
 
-/* For no cropping at all (may leave empty spaces) */
-.landing-container.no-crop {
-  background-size: contain;
-  background-color: #000; /* Add dark background to fill empty space */
-}
+    /* For no cropping at all (may leave empty spaces) */
+    .landing-container.no-crop {
+      background-size: contain;
+      background-color: #000;
+    }
 
-/* For perfect display without cropping (best compromise) */
-.landing-container.optimal {
-  background-size: cover;
-  background-position: top center; /* Adjust based on your image composition */
-}
-
-    /* Button container */
-.button-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  z-index: 1001;
-}
-
-/* Invitation button */
-.invitation-button {
-  width: auto;
-  height: auto;
-  max-width: 80vw; /* Uses viewport width for maximum size */
-  max-height: 20vh; /* Uses viewport height for maximum size */
-  cursor: pointer;
-  transition: transform 0.2s;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  -webkit-user-select: none;
-  object-fit: contain; /* Ensures image maintains aspect ratio */
-}
-
-.invitation-button:hover {
-  transform: scale(1.05);
-}
-/* Responsive adjustments */
-@media (min-width: 1024px) {
-  .button-container {
-    top: 22%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 49vh;
-  }
-}
-@media (max-width: 1024px) {
-  .button-container {
-    top: 38%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 23vh;
-  }
-}
-@media (max-width: 853px) {
-  .button-container {
-    top: 39%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 23vh;
-  }
-}
-@media (max-width: 820px) {
-  .button-container {
-    top: 41%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 25vh;
-  }
-}
-@media (max-width: 820px) {
-  .button-container {
-    top: 39%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 25vh;
-  }
-}
-@media (max-width: 768px) {
-  .button-container {
-    top: 38%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 90vw;
-    max-height: 25vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .button-container {
-    top: 41%; /* Slightly higher on small screens */
-  }
-  .invitation-button {
-    max-width: 95vw;
-    max-height: 21vh;
-  }
-}
+    /* For perfect display without cropping (best compromise) */
+    .landing-container.optimal {
+      background-size: cover;
+      background-position: top center;
+    }
     
     a, a:focus, a:active {
       outline: none;
@@ -408,29 +313,222 @@
         padding: 10px;
       }
     }
+
+    /* Snowflakes styling */
+    #snowflakesContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: #14edf5;
+      font-size: 1em;
+      pointer-events: none;
+      animation: fall linear forwards;
+      z-index: 1000;
+      opacity: 0.8;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    } 
+
+    /* Remove tap highlight for all interactive elements */
+    button, a, input, textarea, select {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    /* Specifically for your pulse button */
+    .pulse-button {
+      /* Your existing styles */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* Active state styling */
+    .pulse-button:active {
+      transform: scale(0.98);
+      background-color: #ffecb4;
+    }
   </style>
 </head>
 
 <body>
+   <!-- Snowflakes Container -->
+   <div id="snowflakesContainer"></div>
+
   <!-- ===== LANDING PAGE ===== -->
   <div class="landing-container" id="landingPage">
-    <div class="button-container">
-      <img 
-        src="images/Wedding Announcement.png" 
-        alt="Open Invitation" 
-        class="invitation-button" 
-        id="openInvitationBtn"
-        loading="lazy"
-      >
+    <div>
+      <button class="pulse-button" id="pulse-button">
+      <img src="images/married-icon.png" alt="" class="button-icon">
+      <span>Wedding Info</span>
+    </button>
     </div>
+
+    <style>
+    .pulse-button {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 25px;
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: bold;
+      color: rgb(0, 0, 0);
+      background: #ffecb4;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+      animation: pulse 1.5s infinite;
+      transition: all 0.3s ease;
+      text-transform: capitalize;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .button-icon {
+      width: auto;
+      height: clamp(20px, 3vw, 28px);
+      object-fit: contain;
+    }
+    
+    .pulse-button:hover {
+      background: #ffecb4;
+      transform: scale(1.05);
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 236, 180, 255);
+      }
+      70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+      }
+    }
+    
+    @media screen and (min-width: 344px) and (max-width: 359px) {
+      .pulse-button {
+        top: 38%;
+        left: 27%;
+        padding: 14px 22px;
+        gap: 6px;
+      }
+    }
+    @media screen and (min-width: 360px) and (max-width: 374px) {
+      .pulse-button {
+        top: 38%;
+        left: 31%;
+        padding: 8px 9px;
+        gap: 6px;
+      }
+    }
+    @media screen and (min-width: 375px) and (max-width: 389px) {
+      .pulse-button {
+        top: 37.8%;
+        left: 33%;
+        padding: 8px 12px;
+        gap: 6px;
+      }
+    }
+    @media screen and (min-width: 390px) and (max-width: 400px) {
+      .pulse-button {
+        top: 37.5%;
+        left: 31%;
+        padding: 14px 22px;
+        gap: 6px;
+      }
+    }
+    @media screen and (min-width: 401px) and (max-width: 500px) {
+      .pulse-button {
+        top: 38.5%;
+        left: 34%;
+        padding: 9px 18px;
+        gap: 6px;
+      }
+    }
+    @media screen and (min-width: 540px) and (max-width: 767px) {
+      .pulse-button {
+        top: 34.5%;
+        left: 37%;
+        padding: 11px 22px;
+        gap: 8px;
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 818px) {
+      .pulse-button {
+        top: 35%;
+        left: 40%;
+        padding: 12px 24px;
+        gap: 9px;
+      }
+    }
+    @media screen and (min-width: 819px) and (max-width: 830px) {
+      .pulse-button {
+        top: 35.5%;
+        left: 39%;
+        padding: 20px 38px;
+        gap: 16px;
+      }
+    }
+    @media screen and (min-width: 830px) and (max-width: 911px) {
+      .pulse-button {
+        top: 33%;
+        left: 40%;
+        padding: 13px 26px;
+        gap: 10px;
+      }
+    }
+    @media screen and (min-width: 912px) and (max-width: 1023px) {
+      .pulse-button {
+        top: 37%;
+        left: 41%;
+        padding: 13px 26px;
+        gap: 10px;
+      }
+    }
+    @media screen and (min-width: 1024px) and (max-width: 1100px) {
+      .pulse-button {
+        top: 30%;
+        left: 41%;
+        padding: 14px 28px;
+        gap: 12px;
+      }
+    }
+    </style>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
   <div class="main-content" id="mainContent">
     <div class="image-container"></div>
     <img src="images/1.jpg" class="image">
-    <img src="images/4.jpg" class="image">
-    
+    <img src="images/4.jpg" class="image2">
+
     <div id="countdown">
       <div class="timer-unit">
         <span id="days">0</span>
@@ -533,14 +631,84 @@
   <audio id="weddingMusic" src="music/Zui Mei Qing Lu.mp3" loop></audio>
 
   <script>
+    // Snowflake effect control
+    let snowInterval;
+    let snowflakesPaused = false;
+    const snowflakeSymbols = ['❄', '❆', '✻', '✼', '✽'];
+
+    function startSnowfall() {
+      const container = document.getElementById('snowflakesContainer');
+      
+      // Clear any existing interval
+      if (snowInterval) clearInterval(snowInterval);
+      
+      // Create initial batch of snowflakes
+      createSnowflakes(container);
+      
+      // Keep creating new snowflakes every 300ms
+      snowInterval = setInterval(() => {
+        if (!snowflakesPaused) {
+          createSnowflakes(container);
+        }
+      }, 300);
+    }
+
+    function pauseSnowflakes() {
+      snowflakesPaused = true;
+      // Clear all existing snowflakes
+      const container = document.getElementById('snowflakesContainer');
+      container.innerHTML = '';
+    }
+
+    function resumeSnowflakes() {
+      snowflakesPaused = false;
+    }
+
+    function createSnowflakes(container) {
+      // Create 3-5 snowflakes at a time
+      const count = Math.floor(Math.random() * 3) + 3;
+      
+      for (let i = 0; i < 1; i++) {
+        const snowflake = document.createElement('div');
+        const randomSymbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+        snowflake.innerHTML = randomSymbol;
+        snowflake.classList.add('snowflake');
+        
+        // Random properties
+        const size = Math.random() * 1.5 + 0.5;
+        const startX = Math.random() * window.innerWidth;
+        const duration = Math.random() * 5 + 5;
+        const delay = Math.random() * 2;
+        const opacity = Math.random() * 0.7 + 0.3;
+        
+        snowflake.style.left = `${startX}px`;
+        snowflake.style.fontSize = `${size}em`;
+        snowflake.style.animationDuration = `${duration}s`;
+        snowflake.style.animationDelay = `${delay}s`;
+        snowflake.style.opacity = opacity;
+        
+        container.appendChild(snowflake);
+        
+        // Remove snowflake after animation completes
+        setTimeout(() => {
+          if (snowflake.parentNode) {
+            snowflake.remove();
+          }
+        }, (duration + delay) * 1000);
+      }
+    }
+
     // Main invitation button functionality
-    document.getElementById('openInvitationBtn').addEventListener('click', function() {
+    document.getElementById('pulse-button').addEventListener('click', function() {
       const landingPage = document.getElementById('landingPage');
       const mainContent = document.getElementById('mainContent');
       const music = document.getElementById('weddingMusic');
 
       // Play music
       music.play().catch(e => console.log("Music play failed. User may need to interact first."));
+
+      // Start infinite snowflakes
+      startSnowfall();
       
       // Fade out landing page
       landingPage.classList.add('fade-out');
@@ -601,6 +769,9 @@
         elements.cover.style.transform = 'rotateY(-180deg)';
         elements.navButtons.style.display = 'flex';
         
+        // Pause snowflakes when album opens
+        pauseSnowflakes();
+
         setTimeout(() => {
           elements.cover.style.visibility = 'hidden';
           showPage(0);
@@ -651,6 +822,8 @@
             elements.cover.style.transform = 'rotateY(0deg)';
             state.isAnimating = false;
             elements.navButtons.style.display = 'none';
+            // Resume snowflakes only when returning to cover
+            resumeSnowflakes();
           }, config.animationDuration);
           return;
         }
@@ -679,6 +852,9 @@
           state.isAnimating = false;
           elements.navButtons.style.display = 'none';
           updateNavigation();
+          
+          // Resume snowflakes when album fully closes
+          resumeSnowflakes();
         }, config.animationDuration);
       }
 
@@ -747,6 +923,6 @@
       }
     });
   </script>
-   <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
